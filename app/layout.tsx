@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 import AuthButton from "@/components/AuthButton";
 import { getBoards } from "@/lib/boards";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: { default: "패션데일리 | 매일 패션 소식 커뮤니티", template: "%s | 패션데일리" },
@@ -32,6 +33,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <p>패션데일리 · 매일 패션 소식을 나누는 커뮤니티</p>
           <p>브리핑의 기사 내용은 요약이며, 저작권은 각 원문 매체에 있습니다.</p>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
