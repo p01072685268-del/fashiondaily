@@ -8,5 +8,5 @@
 
 ## 처음 설정
 1. Supabase SQL Editor에서 `supabase/schema.sql` → `supabase/seed.sql` 순서로 실행
-2. Vercel 환경변수: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `BRIEFING_SECRET`
+2. Vercel 환경변수 (NEXT_PUBLIC_ 값은 Type을 Config로): `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `BRIEFING_SECRET`
 3. 사이트에서 가입한 뒤 운영자 지정: `update profiles set is_admin = true where nickname = '내닉네임';`
