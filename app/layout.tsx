@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   keywords: ["패션", "패션 뉴스", "패션 브리핑", "패밀리세일", "세일 정보", "콜라보", "신발 발매", "데일리룩", "코디", "패션 커뮤니티", "무신사", "브랜드 소식"],
   robots: { index: true, follow: true },
   // 네이버·구글 소유 확인 코드는 받으면 여기에 넣기
-  verification: { google: undefined, other: {} },
+  verification: { google: undefined, other: { "naver-site-verification": "d82acf0023658d33b92d318fd65164824f461afa" } },
   title: { default: "패션데일리 | 매일 패션 소식 커뮤니티", template: "%s | 패션데일리" },
   description: "매일 아침 국내외 패션 소식 브리핑, 세일·발매 정보, 데일리룩 인증까지. 패션을 좋아하는 사람들의 커뮤니티.",
   openGraph: { siteName: "패션데일리", locale: "ko_KR", type: "website", url: SITE },
