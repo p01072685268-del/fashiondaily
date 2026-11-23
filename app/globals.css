@@ -134,3 +134,5 @@ legend { font-size: 14px; font-weight: 600; }
 
 .foot { color: var(--sub); font-size: 12px; text-align: center; padding: 20px 16px 40px; }
 .foot p { margin: 2px 0; }
+.btn.kakao { width: 100%; background: #FEE500; color: #191919; border-color: #FEE500; margin: 6px 0 4px; }
+.or { text-align: center; color: var(--sub); font-size: 13px; margin: 8px 0; }

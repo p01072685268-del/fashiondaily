@@ -41,9 +41,20 @@ function LoginForm() {
     }
   }
 
+  async function kakao() {
+    setErr("");
+    const { error } = await supabaseBrowser().auth.signInWithOAuth({
+      provider: "kakao",
+      options: { redirectTo: window.location.origin },
+    });
+    if (error) setErr("카카오 로그인을 시작하지 못했어요. 잠시 후 다시 시도해 주세요.");
+  }
+
   return (
     <section className="card narrow">
       <h1>{mode === "signup" ? "패션데일리 가입하기" : "로그인"}</h1>
+      <button type="button" className="btn big kakao" onClick={kakao}>카카오로 3초 만에 시작하기</button>
+      <p className="or">또는 이메일로</p>
       <form onSubmit={submit} className="form">
         <label>이메일<input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></label>
         <label>비밀번호<input type="password" required value={pw} onChange={(e) => setPw(e.target.value)}
