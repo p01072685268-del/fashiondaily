@@ -231,3 +231,9 @@ insert into public.boards (slug, name, description, emoji, sort, admin_only, kin
   ('poll',     '투표·이벤트',       '여러분의 선택을 들려주세요',                    '🗳️', 7, false, 'poll')
 on conflict (slug) do update set name = excluded.name, description = excluded.description,
   emoji = excluded.emoji, sort = excluded.sort, admin_only = excluded.admin_only, kind = excluded.kind;
+
+-- ───────── API 접근 권한 ─────────
+grant usage on schema public to anon, authenticated;
+grant select on all tables in schema public to anon, authenticated;
+grant insert, update, delete on public.posts, public.comments, public.likes, public.poll_options, public.poll_votes to authenticated;
+grant execute on function public.add_view(bigint) to anon, authenticated;
