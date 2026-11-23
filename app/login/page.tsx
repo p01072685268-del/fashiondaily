@@ -3,6 +3,9 @@ import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { supabaseBrowser } from "@/lib/supabase";
 
+// 카카오 개발자 앱과 Supabase Kakao 설정, supabase/kakao.sql 실행이 끝나면 true 로 바꾸세요.
+const KAKAO_ON = false;
+
 function LoginForm() {
   const params = useSearchParams();
   const router = useRouter();
@@ -53,8 +56,12 @@ function LoginForm() {
   return (
     <section className="card narrow">
       <h1>{mode === "signup" ? "패션데일리 가입하기" : "로그인"}</h1>
-      <button type="button" className="btn big kakao" onClick={kakao}>카카오로 3초 만에 시작하기</button>
-      <p className="or">또는 이메일로</p>
+      {KAKAO_ON && (
+        <>
+          <button type="button" className="btn big kakao" onClick={kakao}>카카오로 3초 만에 시작하기</button>
+          <p className="or">또는 이메일로</p>
+        </>
+      )}
       <form onSubmit={submit} className="form">
         <label>이메일<input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></label>
         <label>비밀번호<input type="password" required value={pw} onChange={(e) => setPw(e.target.value)}
