@@ -16,7 +16,7 @@ async function getBoard(slug: string) {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const b = await getBoard((await params).slug);
-  return b ? { title: b.name, description: b.description } : {};
+  return b ? { title: b.name, description: `${b.description} | 패션데일리`, alternates: { canonical: `/b/${b.slug}` }, openGraph: { title: `${b.name} | 패션데일리`, description: b.description, url: `/b/${b.slug}` } } : {};
 }
 
 export default async function BoardPage({

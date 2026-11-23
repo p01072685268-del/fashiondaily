@@ -24,7 +24,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: p.title,
     description: excerpt(p.body, 120),
-    openGraph: { title: p.title, description: excerpt(p.body, 120), images: p.image_url ? [p.image_url] : undefined },
+    alternates: { canonical: `/p/${p.id}` },
+    openGraph: { type: "article", title: p.title, description: excerpt(p.body, 120), url: `/p/${p.id}`, publishedTime: p.created_at, images: p.image_url ? [p.image_url] : undefined },
   };
 }
 
