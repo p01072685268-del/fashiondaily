@@ -38,7 +38,8 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
   return (
     <article className="card post">
       <Link href={`/b/${b.slug}`} className="crumb">{b.emoji} {b.name}</Link>
-      <h1>{post.title}</h1>
+      <h1>{post.post_type === "industry" && <span className="tag ad">광고·협찬</span>}{post.title}</h1>
+      {post.post_type === "industry" && <p className="meta">브랜드·업계 관계자가 쓴 추천 글이에요. 경제적 이해관계가 있을 수 있어요.</p>}
       <div className="meta row">
         <span>{post.author_name} · {timeAgo(post.created_at)} · 조회 {post.view_count}</span>
         <PostActions postId={post.id} authorId={post.author_id} boardSlug={b.slug} />

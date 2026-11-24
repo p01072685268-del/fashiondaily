@@ -148,6 +148,7 @@ begin
     new.author_id := old.author_id;
     new.author_name := old.author_name;
     new.board_slug := old.board_slug;
+    new.post_type := old.post_type;
   end if;
   return new;
 end $$;
@@ -237,3 +238,7 @@ grant usage on schema public to anon, authenticated;
 grant select on all tables in schema public to anon, authenticated;
 grant insert, update, delete on public.posts, public.comments, public.likes, public.poll_options, public.poll_votes to authenticated;
 grant execute on function public.add_view(bigint) to anon, authenticated;
+
+-- ───────── 나만의 아이템 추천: 일반/업계 구분 (2026-11-24) ─────────
+alter table public.posts add column if not exists post_type text not null default 'general'
+  check (post_type in ('general', 'industry'));

@@ -10,6 +10,7 @@ export default function PostList({ posts, showBoard }: { posts: Post[]; showBoar
         <li key={p.id} className={p.is_pinned ? "pinned" : ""}>
           <Link href={`/p/${p.id}`}>
             {p.is_pinned && <span className="tag">공지</span>}
+            {p.post_type === "industry" && <span className="tag ad">광고·협찬</span>}
             {showBoard && <span className="bname">{showBoard[p.board_slug]}</span>}
             <span className="ptitle">{p.title}</span>
             {p.comment_count > 0 && <span className="ccount">[{p.comment_count}]</span>}

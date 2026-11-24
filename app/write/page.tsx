@@ -16,6 +16,7 @@ function WriteForm() {
   const [body, setBody] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [options, setOptions] = useState(["", ""]);
+  const [industry, setIndustry] = useState(false);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
 
@@ -54,6 +55,7 @@ function WriteForm() {
     const { data, error } = await sb.from("posts").insert({
       board_slug: slug, author_id: me.user.id, author_name: me.nickname,
       title: title.trim(), body: body.trim(), image_url,
+      ...(slug === "review" ? { post_type: industry ? "industry" : "general" } : {}),
     }).select("id").single();
     if (error || !data) { setBusy(false); return setErr("글을 올리지 못했어요. 잠시 후 다시 시도해 주세요."); }
     if (board?.kind === "poll") {
@@ -71,6 +73,14 @@ function WriteForm() {
             {usable.map((b) => <option key={b.slug} value={b.slug}>{b.emoji} {b.name}</option>)}
           </select>
         </label>
+        {slug === "review" && (
+          <fieldset>
+            <legend>추천하는 사람</legend>
+            <label className="opt"><input type="radio" checked={!industry} onChange={() => setIndustry(false)} /> 일반 추천 (내가 좋아하는 아이템)</label>
+            <label className="opt"><input type="radio" checked={industry} onChange={() => setIndustry(true)} /> 브랜드·업계 추천 (내 브랜드·회사 제품, 협찬 포함)</label>
+            {industry && <p className="meta">글에 <b>광고·협찬</b> 표시가 자동으로 붙어요. (표시·광고법에 따른 표시)</p>}
+          </fieldset>
+        )}
         <label>제목
           <input value={title} onChange={(e) => setTitle(e.target.value)} maxLength={120} placeholder="제목을 입력하세요" />
         </label>

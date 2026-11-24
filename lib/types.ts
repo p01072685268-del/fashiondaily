@@ -17,6 +17,7 @@ export type Post = {
   body: string;
   image_url: string | null;
   is_pinned: boolean;
+  post_type?: string;
   view_count: number;
   like_count: number;
   comment_count: number;
